@@ -14,7 +14,7 @@ app.config['Path'] = '../test/'
 #     dir = os.listdir(app.config['Path'])
 #     return render_template('index.html',files=dir)
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['POST','GET'])
 def upload_files():
     upDoc = request.files['upDoc']
     upDocName = secure_filename(upDoc.filename)
@@ -26,7 +26,7 @@ def upload_files():
         return 'File name error!'
     return 'File Uploaded!'
 
-@app.route('/database/<filename>',methods=['POST']) # return file
+@app.route('/database/<filename>',methods=['GET']) # return file
 def view_file(filename):
     return send_from_directory(app.config['Path'], filename)
 
@@ -34,7 +34,7 @@ def view_file(filename):
 # def searcht():
 #     return render_template('search.html')
 
-@app.route('/search/',methods=['POST'])
+@app.route('/search/',methods=['POST','GET'])
 def search():
     query = request.args.get('query')
     return(jsonify(searchq(query,app.config['Path'],app.config['ExtensionS'])))
