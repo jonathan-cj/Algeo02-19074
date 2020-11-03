@@ -46,7 +46,7 @@ class App extends Component  {
   //Mengubah state selectedFiles ketika ada file yang dipilih
   onFileChange(event){
     this.setState({
-      selectedFiles:event.target.files
+      selectedFiles:event.target.files[0]
     })
     console.log(this.state.selectedFiles)
   }
@@ -56,7 +56,7 @@ class App extends Component  {
     event.preventDefault()
     const data = new FormData()
     data.append('file', this.state.selectedFiles)
-    axios.post("/upload/", data, {})
+    axios.post("/upload", data)
     .then(res => {
       console.log(res.statusText)
     })

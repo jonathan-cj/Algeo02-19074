@@ -2,7 +2,7 @@ import React from 'react'
 
 function Upload(props){
     return(
-        <form onSubmit={props.HandleSubmit}>
+        <form onSubmit={props.HandleSubmit} method="post">
             <input 
                 onChange={props.HandleChange} 
                 type="file" 

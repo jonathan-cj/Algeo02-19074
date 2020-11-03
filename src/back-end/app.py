@@ -17,15 +17,17 @@ app.config['Query'] = 'query'
 
 @app.route('/upload', methods=['POST','GET'])
 def upload_files():
-    upDoc = request.files['upDoc']
-    upDocName = secure_filename(upDoc.filename)
-    if upDocName != '':
-        if not upDocName.lower().endswith(app.config['Extension']):
-            return 'File extension not allowed'
-        upDoc.save(os.path.join(app.config['Path'], upDocName))
-    else : 
-        return 'File name error!'
-    return 'File Uploaded!'
+    if request.method == "POST":
+        upDoc = request.files['file']
+        upDocName = secure_filename(upDoc.filename)
+        print(upDoc)
+        if upDocName != '':
+            if not upDocName.lower().endswith(app.config['Extension']):
+                return 'File extension not allowed'
+            upDoc.save(os.path.join(app.config['Path'], upDocName))
+        else : 
+            return 'File name error!'
+        return 'File Uploaded!'
 
 @app.route('/database/<filename>',methods=['GET']) # return file
 def view_file(filename):
