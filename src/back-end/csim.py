@@ -24,7 +24,9 @@ from os.path import join
 from os import listdir
 
 def clear(x): # terima string
-    return x.lower().replace('–',' ').replace('-',' ').replace('(','').replace(')',' ').replace(',','').replace('.','').replace('!','').replace('?','').replace('"',' ')
+    if x != None:
+        return x.lower().replace('–',' ').replace('-',' ').replace('(','').replace(')',' ').replace(',','').replace('.','').replace('!','').replace('?','').replace('"',' ')
+    return None
 
 def tokenit(x): # ubah string ke list
     ban = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 

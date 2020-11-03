@@ -25,9 +25,11 @@ class App extends Component  {
 
   HandleSubmit(event){
     event.preventDefault()
-    const query = event.searchQuery
+    var param = {
+      query:this.state.searchQuery
+    }
 
-    axios.post(`/query`, { query })
+    axios.post(`/search/`, param)
       .then(res => {
         console.log(res);
         console.log(res.data);

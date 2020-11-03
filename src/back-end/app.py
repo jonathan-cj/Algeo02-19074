@@ -7,7 +7,8 @@ from csim import *
 app = Flask(__name__)
 app.config['Extension'] = ('.pdf', '.txt', '.html')
 app.config['ExtensionS'] = ('*.pdf', '*.txt', '*.html')
-app.config['Path'] = '../test/'
+app.config['Path'] = '../../test/'
+app.config['Query'] = 'query'
 
 # @app.route('/')
 # def index():
@@ -36,5 +37,5 @@ def view_file(filename):
 
 @app.route('/search/',methods=['POST','GET'])
 def search():
-    query = request.args.get('query')
-    return(jsonify(searchq(query,app.config['Path'],app.config['ExtensionS'])))
+    query = request.get_json()
+    return jsonify(searchq(query[app.config['Query']],app.config['Path'],app.config['ExtensionS']))
