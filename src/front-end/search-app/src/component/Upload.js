@@ -1,9 +1,13 @@
 import React from 'react'
 
-function Upload(){
+function Upload(props){
     return(
-        <form>
-            <input type="file" id="myfile" multiple name="myfile"></input>
+        <form onSubmit={props.HandleSubmit}>
+            <input 
+                onChange={props.HandleChange} 
+                type="file" 
+                multiple
+            />
             <button>Upload</button>
         </form>
     )

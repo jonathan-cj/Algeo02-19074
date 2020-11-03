@@ -3,7 +3,7 @@ import "../App.css"
 
 function Main(props){
     return(
-        <form className="Main" onSubmit={props.HandleSubmit} method="post">
+        <form className="Main" onSubmit={props.HandleSearch} method="post">
           <input 
             type="text" 
             value={props.data.searchQuery}

@@ -3,9 +3,9 @@ import "../App.css"
 
 function File(props){
     return(
-        <div className="File">
-            <h2>{props.file.name}</h2>
-            <p>{props.file.desc}</p>
+        <div>
+            <h2>Nama File: {props.file.name}</h2>
+            <p>Nama Type: {props.file.type}</p>
         </div>
     )
 }
