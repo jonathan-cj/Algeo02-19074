@@ -18,7 +18,7 @@ app.config['Query'] = 'query'
 @app.route('/upload', methods=['POST','GET'])
 def upload_files():
     if request.method == "POST":
-        upDoc = request.files['file']
+        upDoc = request.files["file"]
         upDocName = secure_filename(upDoc.filename)
         print(upDoc)
         if upDocName != '':

@@ -13,12 +13,13 @@ class App extends Component  {
     this.state = {
       searchQuery: null,
       submit: false,
-      selectedFiles: null
+      selectedFiles: undefined
     }
     this.HandleChange = this.HandleChange.bind(this)
     this.HandleSearch = this.HandleSearch.bind(this)
     this.onFileChange = this.onFileChange.bind(this)
     this.HandleSubmit = this.HandleSubmit.bind(this)
+    this.upload = this.upload.bind(this)
   }
 
   //Update state dengan searchQuery yang baru
@@ -46,20 +47,29 @@ class App extends Component  {
   //Mengubah state selectedFiles ketika ada file yang dipilih
   onFileChange(event){
     this.setState({
-      selectedFiles:event.target.files[0]
+      selectedFiles: event.target.files
     })
     console.log(this.state.selectedFiles)
   }
 
-  //Upload files ke backend server
-  HandleSubmit(event){
-    event.preventDefault()
+  //Upload file ke backend server
+  upload(file){
     const data = new FormData()
-    data.append('file', this.state.selectedFiles)
+    data.append("file", file)
     axios.post("/upload", data)
     .then(res => {
       console.log(res.statusText)
     })
+  }
+
+  //Submit files
+  HandleSubmit(event){
+    event.preventDefault()
+    const selectedFiles = this.state.selectedFiles
+
+    for(let i=0; i<selectedFiles.length; i++){
+      this.upload(selectedFiles[i])
+    }
   }
 
   render(){//Tampilan web
