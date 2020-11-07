@@ -13,7 +13,8 @@ class App extends Component  {
     this.state = {
       searchQuery: null,
       submit: false,
-      selectedFiles: undefined
+      selectedFiles: undefined,
+      results: [],
     }
     this.HandleChange = this.HandleChange.bind(this)
     this.HandleSearch = this.HandleSearch.bind(this)
@@ -41,7 +42,13 @@ class App extends Component  {
       .then(res => {
         console.log(res);
         console.log(res.data);
+        const results = res.data
+        this.setState({ results })
       })
+    
+    this.setState({
+      submit: true
+    })
   }
 
   //Mengubah state selectedFiles ketika ada file yang dipilih
@@ -74,20 +81,25 @@ class App extends Component  {
 
   render(){//Tampilan web
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Main 
-            HandleChange={this.HandleChange} 
-            HandleSearch={this.HandleSearch}
-            data={this.state} 
-          />
-          <Upload 
-            HandleSubmit={this.HandleSubmit}
-            HandleChange={this.onFileChange}
-          />
-        </header>
-      </div>
+      this.state.submit ?
+        <ul>
+          {this.state.results.map(file => <li>{file.title}</li>)}
+        </ul>
+      :   
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <Main 
+              HandleChange={this.HandleChange} 
+              HandleSearch={this.HandleSearch}
+              data={this.state} 
+            />
+            <Upload 
+              HandleSubmit={this.HandleSubmit}
+              HandleChange={this.onFileChange}
+            />
+          </header>
+        </div>
     )}
 }
 
