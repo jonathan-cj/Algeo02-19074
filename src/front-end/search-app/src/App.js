@@ -5,14 +5,16 @@ import axios from 'axios'
 
 import Main from './component/Main'
 import Upload from './component/Upload'
-//import File from './component/File'
+import Header from './component/Header'
+import FileData from './component/FileData'
+import File from './component/File'
 
 class App extends Component  {
   constructor(){
     super()
     this.state = {
       searchQuery: null,
-      submit: false,
+      search: false,
       selectedFiles: undefined,
       results: [],
     }
@@ -47,7 +49,7 @@ class App extends Component  {
       })
     
     this.setState({
-      submit: true
+      search: true
     })
   }
 
@@ -80,11 +82,17 @@ class App extends Component  {
   }
 
   render(){//Tampilan web
+    const searchResult = this.state.results.map(file => <File key={file.title} file={file}/>)
     return (
-      this.state.submit ?
-        <ul>
-          {this.state.results.map(file => <li>{file.title}</li>)}
-        </ul>
+      this.state.search ?
+        <div className="Header">
+          <Header 
+            HandleChange={this.HandleChange} 
+            HandleSearch={this.HandleSearch}
+            data={this.state}
+          />
+          {searchResult}
+        </div>
       :   
         <div className="App">
           <header className="App-header">
@@ -97,6 +105,9 @@ class App extends Component  {
             <Upload 
               HandleSubmit={this.HandleSubmit}
               HandleChange={this.onFileChange}
+            />
+            <FileData 
+              data={this.state}
             />
           </header>
         </div>

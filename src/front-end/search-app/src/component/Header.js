@@ -3,16 +3,16 @@ import "../App.css"
 
 function Header(props){
     return(
-        <form className="Header" onSubmit={props.HandleSubmit}>
+        <form onSubmit={props.HandleSubmit}>
           <input 
-            className="search"
+            className="Search-bar"
             type="text" 
             value={props.data.searchQuery}
             name="searchQuery" 
             placeholder="Search..." 
             onChange={props.HandleChange} 
           />
-          <button className="searchButton">Search</button>
+          <button className="Search-button">Search</button>
         </form>
     )
 }

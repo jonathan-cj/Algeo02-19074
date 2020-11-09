@@ -1,18 +1,21 @@
 import React from 'react'
 
 function FileData(props){ 
-    if (props.selectedFiles) { 
+    if (props.data.selectedFiles) { 
       return ( 
         <div> 
-          <h2>File Details:</h2> 
-          
+          <hr />
+          <h2>Files Uploaded:</h2>
+          <ul>
+            <li>{props.data.selectedFiles.filename}</li>
+          </ul>
         </div> 
       )
     } else { 
       return ( 
         <div> 
-          <br /> 
-          <h4>Choose before Pressing the Upload button</h4> 
+          <hr /> 
+          <h4>No files has been uploaded</h4> 
         </div> 
       )
     } 
