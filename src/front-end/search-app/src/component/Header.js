@@ -3,7 +3,7 @@ import "../App.css"
 
 function Header(props){
     return(
-        <form onSubmit={props.HandleSubmit}>
+        <form onSubmit={props.HandleSearch}>
           <input 
             className="Search-bar"
             type="text" 

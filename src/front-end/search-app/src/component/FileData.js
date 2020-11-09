@@ -1,20 +1,18 @@
 import React from 'react'
 
 function FileData(props){ 
-    if (props.data.selectedFiles) { 
+    if (props.data.uploadedFiles.length!==0) { 
       return ( 
-        <div> 
-          <hr />
-          <h2>Files Uploaded:</h2>
+        <div className="File-list"> 
+          <h3>Files Uploaded:</h3>
           <ul>
-            <li>{props.data.selectedFiles.filename}</li>
+            {props.data.uploadedFiles.map(file => <li>{file.name}</li>)}
           </ul>
         </div> 
       )
     } else { 
       return ( 
-        <div> 
-          <hr /> 
+        <div className="File-list"> 
           <h4>No files has been uploaded</h4> 
         </div> 
       )

@@ -17,6 +17,7 @@ class App extends Component  {
       search: false,
       selectedFiles: undefined,
       results: [],
+      uploadedFiles: []
     }
     this.HandleChange = this.HandleChange.bind(this)
     this.HandleSearch = this.HandleSearch.bind(this)
@@ -75,24 +76,38 @@ class App extends Component  {
   HandleSubmit(event){
     event.preventDefault()
     const selectedFiles = this.state.selectedFiles
+    const uploadedFiles = []
 
     for(let i=0; i<selectedFiles.length; i++){
       this.upload(selectedFiles[i])
+      uploadedFiles.push(selectedFiles[i])
     }
+
+    this.setState({ uploadedFiles })
   }
 
   render(){//Tampilan web
+    this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1) 
     const searchResult = this.state.results.map(file => <File key={file.title} file={file}/>)
     return (
       this.state.search ?
-        <div className="Header">
-          <Header 
-            HandleChange={this.HandleChange} 
-            HandleSearch={this.HandleSearch}
-            data={this.state}
-          />
-          {searchResult}
-        </div>
+        this.state.results.length!==0 ?
+          <div className="Header">
+            <Header 
+              HandleChange={this.HandleChange} 
+              HandleSearch={this.HandleSearch}
+              data={this.state}
+            />
+            <h4>Top search results :</h4>
+            {searchResult}
+          </div>
+        :
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h>Searching...</h>
+            </header>
+          </div>
       :   
         <div className="App">
           <header className="App-header">
@@ -102,6 +117,8 @@ class App extends Component  {
               HandleSearch={this.HandleSearch}
               data={this.state} 
             />
+            <br />
+            <hr className="Line"/>
             <Upload 
               HandleSubmit={this.HandleSubmit}
               HandleChange={this.onFileChange}
