@@ -9,7 +9,7 @@ function File(props){
                 <h4>{props.file.title}</h4>
             </a>
             <p>Jumlah kata: {props.file.totalword}</p>
-            <p>Tinkgat kemiripan: {Math.round(props.file.similiarity*100)/100}%</p>
+            <p>Tingkat kemiripan: {Math.round(props.file.similiarity*100)/100}%</p>
             <p>"{props.file.firstsentence}"</p>
         </div>
     )
