@@ -8,7 +8,7 @@ function Upload(props){
                 type="file" 
                 multiple
             />
-            <button>Upload</button>
+            <button className="Search-button">Upload</button>
         </form>
     )
 }

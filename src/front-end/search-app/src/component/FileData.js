@@ -13,7 +13,7 @@ function FileData(props){
     } else { 
       return ( 
         <div className="File-list"> 
-          <h4>No files has been uploaded</h4> 
+          <h4>No files has been uploaded recently</h4> 
         </div> 
       )
     } 
