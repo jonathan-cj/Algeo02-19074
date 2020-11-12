@@ -46,11 +46,12 @@
   justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 10px;
+  padding: 5px 10px 5px 5px;
 }
 
 .Search-bar {
   background-color: white;
+  border-radius: 10px;
   height: 20px;
   width : 75%;
   margin : 10px 0 0 10px;
@@ -70,7 +71,7 @@
   border-radius: 5px;
   line-height: 100%;
   font-size: calc(5px + 2vmin);
-  padding: 2px;
+  padding: 4px 2px 2px 2px;
   margin: 5px;
 }
 
@@ -81,6 +82,61 @@
   color: white;
 }
 
+.One-line{
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+h4{
+  padding: 0px;
+  margin: 0px;
+}
+
+.Line-main{
+  width: 80%;
+}
+
 .Line{
-  width : 40%;
+  width: 100%;
+}
+
+table{
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+td{
+  overflow: hidden;
+  width: 5px;
+  border-collapse: collapse;
+  border-bottom: 2px solid black;
+  border-right: 1px solid black;
+  padding-right: 5px;
+  padding-left: 2px;
+  text-align: center;
+}
+
+th{
+  overflow: hidden;
+  width: 5px;
+  border-collapse: collapse;
+  border-bottom: 2px solid black;
+  padding-right: 5px;
+  padding-left: 2px;
+}
+
+td:nth-child(even) {background-color: #3b414d;}
+
+::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track{
+  background: #3b414d;
+  border: 10px black;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #888;
 }

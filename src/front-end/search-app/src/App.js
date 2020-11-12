@@ -39,6 +39,11 @@ class App extends Component  {
   //Mengirim data searchQuery ke backend server
   HandleSearch(event){
     event.preventDefault()
+
+    this.setState({
+      results: []
+    })
+
     var param = {
       query:this.state.searchQuery
     }
@@ -51,7 +56,7 @@ class App extends Component  {
         this.setState({ results })
       })
       
-    axios.get(`/table`)
+    axios.post(`/table`,param)
       .then(res => {
         console.log(res.data)
         const tableData = res.data
@@ -108,8 +113,13 @@ class App extends Component  {
   render(){//Tampilan web
     this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1) 
     const searchResult = this.state.results.map(file => <File key={file.title} file={file}/>)
-    if (this.state.tableData.length !== 0) {
+
+    if (this.state.results.length !== 0 && this.state.search) {
       var table = this.state.tableData.map(this.CreateTable)
+    }
+
+    const scroll = {
+      overflowX:'auto'
     }
     return (
       this.state.search ?
@@ -120,9 +130,22 @@ class App extends Component  {
               HandleSearch={this.HandleSearch}
               data={this.state}
             />
+            <h4>Upload more files :</h4>
+            <Upload 
+              HandleSubmit={this.HandleSubmit}
+              HandleChange={this.onFileChange}
+            />
+            <hr className="Line"/>
             <h4>Top search results :</h4>
             {searchResult}
-            {this.state.tableData.length!==0 ? table:null}
+            <h4>Query Total per Files:</h4>
+            <div style={scroll}>
+              <table>{this.state.tableData.length!==0 ? table:null}</table>
+            </div>
+            <hr className="Line"/>
+            <a href="https://google.com" target="_blank" rel="noreferrer" className="App-link">
+              PERIHAL BLOM ADA
+            </a>
           </div>
         :
           <div className="App">
@@ -141,7 +164,7 @@ class App extends Component  {
               data={this.state} 
             />
             <br />
-            <hr className="Line"/>
+            <hr className="Line-main"/>
             <Upload 
               HandleSubmit={this.HandleSubmit}
               HandleChange={this.onFileChange}

@@ -46,5 +46,5 @@ def search():
 @app.route('/table',methods=['POST','GET'])
 def table():
     query = request.get_json()
-    print(searchq(query[app.config['Query']],app.config['Path'],app.config['ExtensionS']))
+    print(searchqt(query[app.config['Query']],app.config['Path'],app.config['ExtensionS']))
     return jsonify(searchqt(query[app.config['Query']],app.config['Path'],app.config['ExtensionS']))

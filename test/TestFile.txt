@@ -1,0 +1,2 @@
+Ini file buat test
+Jadi kalo mau test pake file ini.
