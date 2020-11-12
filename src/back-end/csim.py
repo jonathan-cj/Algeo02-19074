@@ -66,7 +66,7 @@ def readtitle(x): # baca judul (asumsi di line pertama) dari dokumen
         i += 1
     if (A[i] != ''):
         return (A[i])
-    return 'Empty document!'
+    return 'Error : title not found.'
 
 def readfirstsen(x): # baca judul (asumsi di line pertama) dari dokumen
     A = opendoc(x).splitlines()
@@ -79,7 +79,7 @@ def readfirstsen(x): # baca judul (asumsi di line pertama) dari dokumen
         if (A[i] == readtitle(x)): # cari line yang ga kosong
             tfound = True
         i += 1
-    return 'Missing context!'
+    return 'Error : body not found.'
 
 def sim(Q,D): # return similiarity
     A = wordcount(tokenit(Q))
@@ -107,7 +107,7 @@ def searchq(Q,dir,ext): # Q = Query(string), dir = directory(string)
     if len(S) != 0:
         return S
     else :
-        return 'No document in database'
+        return 0
 
 def simtable(Q,D): # return similiarity
     A = wordcount(tokenit(Q))
@@ -138,7 +138,7 @@ def searchqt(Q,dir,ext):
     R = [A] + R
     return R
      
-# print(searchqt("RSA Prime",'../test/',('*.pdf', '*.txt', '*.html')))
+# print(searchq("RSA Prime",'../test/',('*.pdf', '*.txt', '*.html')))
 # print(opendoc("../doc/H.pdf"))
 # print(opendoc("../doc/b.html"))
 # print(opendoc("../doc/a.txt"))
