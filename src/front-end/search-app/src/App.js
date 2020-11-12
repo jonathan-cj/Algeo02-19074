@@ -17,13 +17,15 @@ class App extends Component  {
       search: false,
       selectedFiles: undefined,
       results: [],
-      uploadedFiles: []
+      uploadedFiles: [],
+      tableData: []
     }
     this.HandleChange = this.HandleChange.bind(this)
     this.HandleSearch = this.HandleSearch.bind(this)
     this.onFileChange = this.onFileChange.bind(this)
     this.HandleSubmit = this.HandleSubmit.bind(this)
     this.upload = this.upload.bind(this)
+    this.CreateTable = this.CreateTable.bind(this)
   }
 
   //Update state dengan searchQuery yang baru
@@ -48,7 +50,14 @@ class App extends Component  {
         const results = res.data
         this.setState({ results })
       })
-    
+      
+    axios.get(`/table`)
+      .then(res => {
+        console.log(res.data)
+        const tableData = res.data
+        this.setState({ tableData })
+      })
+
     this.setState({
       search: true
     })
@@ -86,9 +95,22 @@ class App extends Component  {
     this.setState({ uploadedFiles })
   }
 
+  //Buat tabel jumlah kata
+  CreateTable(column){
+    const component = column.map(props => <td>{props}</td>)
+      return(
+        <tr width="100px">
+          {component}
+        </tr>
+      )
+    }
+
   render(){//Tampilan web
     this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1) 
     const searchResult = this.state.results.map(file => <File key={file.title} file={file}/>)
+    if (this.state.tableData.length !== 0) {
+      var table = this.state.tableData.map(this.CreateTable)
+    }
     return (
       this.state.search ?
         this.state.results.length!==0 ?
@@ -100,6 +122,7 @@ class App extends Component  {
             />
             <h4>Top search results :</h4>
             {searchResult}
+            {this.state.tableData.length!==0 ? table:null}
           </div>
         :
           <div className="App">
