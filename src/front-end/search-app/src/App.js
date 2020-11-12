@@ -40,32 +40,35 @@ class App extends Component  {
   HandleSearch(event){
     event.preventDefault()
 
-    this.setState({
-      results: []
-    })
+    if (this.state.searchQuery){
+      this.setState({
+        results: [],
+        uploadedFiles: []
+      })
 
-    var param = {
-      query:this.state.searchQuery
+      var param = {
+        query:this.state.searchQuery
+      }
+
+      axios.post(`/search/`, param)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          const results = res.data
+          this.setState({ results })
+        })
+        
+      axios.post(`/table`,param)
+        .then(res => {
+          console.log(res.data)
+          const tableData = res.data
+          this.setState({ tableData })
+        })
+
+      this.setState({
+        search: true
+      })
     }
-
-    axios.post(`/search/`, param)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        const results = res.data
-        this.setState({ results })
-      })
-      
-    axios.post(`/table`,param)
-      .then(res => {
-        console.log(res.data)
-        const tableData = res.data
-        this.setState({ tableData })
-      })
-
-    this.setState({
-      search: true
-    })
   }
 
   //Mengubah state selectedFiles ketika ada file yang dipilih
@@ -111,8 +114,13 @@ class App extends Component  {
     }
 
   render(){//Tampilan web
-    this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1) 
-    const searchResult = this.state.results.map(file => <File key={file.title} file={file}/>)
+    if(this.state.results.length!==0){
+      this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1)
+    }
+
+    const searchResult = this.state.results.map(file => {
+      return <File key={file.title} file={file} />;
+    })
 
     if (this.state.results.length !== 0 && this.state.search) {
       var table = this.state.tableData.map(this.CreateTable)
@@ -121,15 +129,18 @@ class App extends Component  {
     const scroll = {
       overflowX:'auto'
     }
+
     return (
       this.state.search ?
         this.state.results.length!==0 ?
           <div className="Header">
+            <h2><img src={logo} className="Search-logo" alt="logo"/>  Search App</h2>
             <Header 
               HandleChange={this.HandleChange} 
               HandleSearch={this.HandleSearch}
               data={this.state}
             />
+            <br />
             <h4>Upload more files :</h4>
             <Upload 
               HandleSubmit={this.HandleSubmit}
@@ -137,14 +148,18 @@ class App extends Component  {
             />
             <hr className="Line"/>
             <h4>Top search results :</h4>
-            {searchResult}
-            <h4>Query Total per Files:</h4>
+            {this.state.results.length!==0 ? searchResult : <h2>No Files in The Database</h2>}
+            <br />
+            <h5>Query Words Appearance per Files:</h5>
             <div style={scroll}>
               <table>{this.state.tableData.length!==0 ? table:null}</table>
             </div>
             <hr className="Line"/>
-            <a href="https://google.com" target="_blank" rel="noreferrer" className="App-link">
-              PERIHAL BLOM ADA
+            <a href="https://github.com/jonathan-cj/Algeo02-19074/blob/main/README.md" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="App-link">
+              Our Github
             </a>
           </div>
         :

@@ -10,8 +10,10 @@ function Main(props){
             name="searchQuery" 
             placeholder="Search..." 
             onChange={props.HandleChange} 
+            formtarget="_self"
+            className="Search-bar"
           />
-          <button>Search</button>
+          <button className="Search-button">Search</button>
         </form>
     )
 }
