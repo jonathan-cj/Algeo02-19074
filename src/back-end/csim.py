@@ -109,8 +109,36 @@ def searchq(Q,dir,ext): # Q = Query(string), dir = directory(string)
     else :
         return 'No document in database'
 
-# print(searchq("RSA Prime",'../test/',('*.pdf', '*.txt', '*.html')))
+def simtable(Q,D): # return similiarity
+    A = wordcount(tokenit(Q))
+    B = wordcount(tokenit(D))
+    C = [0 for i in range(len(A))]
+    for i in range(len(A)):
+        for j in range (len(B)):
+            if (B[j][0] == A[i][0]):
+                C[i] += B[j][1]
+    return C
 
+def searchqt(Q,dir,ext):
+    # Membuat base
+    A = [] # array of namafile
+    for types in ext:
+        A.extend(glob(join(dir, types)))
+    AT = A.copy()
+    for i in range(len(A)):
+        A[i] = A[i].partition('\\')[2]
+    A = ["Keywords","Query"] + A
+    # Membuat tabel
+    B = wordcount(tokenit(Q))
+    R = [[B[i][0],B[i][1]] for i in range(len(B))]
+    for i in range(0,len(AT)):
+        N = simtable(Q,opendoc(AT[i]))
+        for j in range(0,len(N)):
+            (R[j]).append(N[j])
+    R = [A] + R
+    return R
+     
+# print(searchqt("RSA Prime",'../test/',('*.pdf', '*.txt', '*.html')))
 # print(opendoc("../doc/H.pdf"))
 # print(opendoc("../doc/b.html"))
 # print(opendoc("../doc/a.txt"))
