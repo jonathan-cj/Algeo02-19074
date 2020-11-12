@@ -94,10 +94,18 @@ class App extends Component  {
     event.preventDefault()
     const selectedFiles = this.state.selectedFiles
     const uploadedFiles = []
-
+    //Tipe File yang dapat di terima hanya .txt .html .pdf
+    const type = ["text/html","text/plain","application/pdf"] 
+    
+    //Upload file 1 per 1
     for(let i=0; i<selectedFiles.length; i++){
-      this.upload(selectedFiles[i])
-      uploadedFiles.push(selectedFiles[i])
+      if(type.includes(selectedFiles[i].type)){
+        this.upload(selectedFiles[i])
+        uploadedFiles.push(selectedFiles[i])
+      }else{//Tipe file tidak sesuai
+        var warning = {name:`Upload ${selectedFiles[i].name} Failed`}
+        uploadedFiles.push(warning)
+      }
     }
 
     this.setState({ uploadedFiles })
@@ -113,54 +121,63 @@ class App extends Component  {
       )
     }
 
-  render(){//Tampilan web
-    if(this.state.results.length!==0){
+  //Tampilan web
+  render(){
+    var searchResult
+    //Mengurutkan sesuai dengan kemiripan
+    if(this.state.results!==0){
       this.state.results.sort((a,b) => a.similiarity>b.similiarity ? -1 : 1)
-    }
+      //Membuat hasil pencarian dlm bentuk JSX
+      searchResult = this.state.results.map(file => {
+        return <File key={file.title} file={file} />;
+      })
+    }else searchResult = []
 
-    const searchResult = this.state.results.map(file => {
-      return <File key={file.title} file={file} />;
-    })
-
+    //Membuat tabel jumlah kemunculan kata-kata di query
     if (this.state.results.length !== 0 && this.state.search) {
       var table = this.state.tableData.map(this.CreateTable)
     }
 
+    //Scroll pada tabel
     const scroll = {
       overflowX:'auto'
     }
 
+    //Tampilan web
     return (
       this.state.search ?
-        this.state.results.length!==0 ?
-          <div className="Header">
-            <h2><img src={logo} className="Search-logo" alt="logo"/>  Search App</h2>
-            <Header 
-              HandleChange={this.HandleChange} 
-              HandleSearch={this.HandleSearch}
-              data={this.state}
-            />
-            <br />
-            <h4>Upload more files :</h4>
-            <Upload 
-              HandleSubmit={this.HandleSubmit}
-              HandleChange={this.onFileChange}
-            />
-            <hr className="Line"/>
-            <h4>Top search results :</h4>
-            {this.state.results.length!==0 ? searchResult : <h2>No Files in The Database</h2>}
-            <br />
-            <h5>Query Words Appearance per Files:</h5>
-            <div style={scroll}>
-              <table>{this.state.tableData.length!==0 ? table:null}</table>
+        this.state.results.length !== 0?
+          <div>
+            <div className="Header">
+              <h2><img src={logo} className="Search-logo" alt="logo"/>  Search App</h2>
+              <Header 
+                HandleChange={this.HandleChange} 
+                HandleSearch={this.HandleSearch}
+                data={this.state}
+              />
+              <br />
+              <h4>Upload more files :</h4>
+              <Upload 
+                HandleSubmit={this.HandleSubmit}
+                HandleChange={this.onFileChange}
+              />
             </div>
-            <hr className="Line"/>
-            <a href="https://github.com/jonathan-cj/Algeo02-19074/blob/main/README.md" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="App-link">
-              Our Github
-            </a>
+            <div className="Body">
+              <h4>Top search results :</h4>
+              {this.state.results !== 0 ? searchResult : <h2>No Files in The Database</h2>}
+              <br />
+              <h5>Query Words Appearance per Files:</h5>
+              <div style={scroll}>
+                <table>{this.state.tableData.length!==0 ? table:null}</table>
+              </div>
+              <hr className="Line"/>
+              <a href="https://github.com/jonathan-cj/Algeo02-19074/blob/main/README.md" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="App-link">
+                Our Github
+              </a>
+            </div>
           </div>
         :
           <div className="App">
@@ -189,7 +206,8 @@ class App extends Component  {
             />
           </header>
         </div>
-    )}
+    )
+  }
 }
 
 export default App;

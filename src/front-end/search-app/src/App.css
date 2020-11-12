@@ -48,6 +48,18 @@
 
 .Header {
   background-color: #282c34;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 5px 10px 5px 5px;
+}
+
+.Body {
+  background-color: #3f8599;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -96,7 +108,7 @@
 .File{
   color : white;
   background-color: #05336b;
-  border: 4px solid white;
+  border: 4px solid whitesmoke;
   border-radius: 5px;
   line-height: 100%;
   font-size: calc(5px + 2vmin);
@@ -164,7 +176,8 @@ th{
   padding-left: 2px;
 }
 
-td:nth-child(even) {background-color: #3b414d;}
+td:nth-child(even) {background-color: #282c34;}
+td:nth-child(odd) {background-color: #05336b;}
 
 ::-webkit-scrollbar{
   width: 10px;
