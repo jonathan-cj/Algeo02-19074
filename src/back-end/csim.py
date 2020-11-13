@@ -22,6 +22,7 @@ import re
 from glob import glob
 from os.path import join
 from os import listdir
+from os import path
 
 def clear(x): # terima string
     if x != None:
@@ -51,6 +52,9 @@ def totalword(x): # terima string, return total word
         sum += doc[i][1]
     return sum
 
+def isfilenotempty(dir,x): # dir : directory folder, x : namafile
+    return (path.getsize(join(dir,x)) > 0) and (path.isfile(join(dir,x)))
+
 def opendoc(x): # terima directory
     if x.lower().endswith('.html'):
         return BeautifulSoup(open(x),"html.parser").get_text()
@@ -63,9 +67,9 @@ def readtitle(x): # baca judul (asumsi di line pertama) dari dokumen
     A = opendoc(x).splitlines()
     i = 0
     if (len(A) > 0) :
-        while (A[i] == '') and (i < len(A)):
+        while (i < len(A)) and (A[i].replace(' ','') == ''):
             i += 1
-        if (A[i] != ''):
+        if (i < len(A)) and (A[i] != ''):
             return (A[i])
     return 'Error : title not found.'
 
@@ -144,7 +148,8 @@ def searchqt(Q,dir,ext):
 # print(opendoc("../doc/H.pdf"))
 # print(opendoc("../doc/b.html"))
 # print(opendoc("../doc/a.txt"))
-
+# print(isfilenotempty('./test/','a.txt'))
+# print(readtitle('./test/haci.pdf'))
 #print(sim("RSA rsa prime",opendoc("../doc/a.txt")))
 #wordlist = [avquery[i][0] for i in range(len(avquery))]
 #countword = [avquery[i][1] for i in range(len(avquery))]
