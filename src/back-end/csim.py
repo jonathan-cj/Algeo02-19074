@@ -62,23 +62,25 @@ def opendoc(x): # terima directory
 def readtitle(x): # baca judul (asumsi di line pertama) dari dokumen
     A = opendoc(x).splitlines()
     i = 0
-    while (A[i] == '') and (i < len(A)):
-        i += 1
-    if (A[i] != ''):
-        return (A[i])
+    if (len(A) > 0) :
+        while (A[i] == '') and (i < len(A)):
+            i += 1
+        if (A[i] != ''):
+            return (A[i])
     return 'Error : title not found.'
 
 def readfirstsen(x): # baca judul (asumsi di line pertama) dari dokumen
-    A = opendoc(x).splitlines()
-    i = 0
-    tfound,found = False,False
-    while (i < len(A)):
-        if (tfound) and A[i].replace(' ','') != '':
-            B = re.split("\.\s+",A[i])
-            return (B[0])
-        if (A[i] == readtitle(x)): # cari line yang ga kosong
-            tfound = True
-        i += 1
+    if (readtitle(x) != 'Error : title not found.'):
+        A = opendoc(x).splitlines()
+        i = 0
+        tfound,found = False,False
+        while (i < len(A)):
+            if (tfound) and A[i].replace(' ','') != '':
+                B = re.split("\.\s+",A[i])
+                return (B[0])
+            if (A[i] == readtitle(x)): # cari line yang ga kosong
+                tfound = True
+            i += 1
     return 'Error : body not found.'
 
 def sim(Q,D): # return similiarity
