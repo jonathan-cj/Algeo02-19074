@@ -155,15 +155,16 @@ class App extends Component  {
                 HandleSearch={this.HandleSearch}
                 data={this.state}
               />
-              <br />
-              <h4>Upload more files :</h4>
-              <Upload 
-                HandleSubmit={this.HandleSubmit}
-                HandleChange={this.onFileChange}
-              />
+              <div className="One-line">
+                <Upload 
+                  HandleSubmit={this.HandleSubmit}
+                  HandleChange={this.onFileChange}
+                />
+                <h4>Upload more files -</h4>
+              </div>
             </div>
             <div className="Body">
-              <h4>Top search results :</h4>
+              <h5>Top search results :</h5>
               {this.state.results !== 0 ? searchResult : <h2>No Files in The Database</h2>}
               <br />
               <h5>Query Words Appearance per Files:</h5>
@@ -171,6 +172,7 @@ class App extends Component  {
                 <table>{this.state.tableData.length!==0 ? table:null}</table>
               </div>
               <hr className="Line"/>
+              <br />
               <a href="https://github.com/jonathan-cj/Algeo02-19074/blob/main/README.md" 
                 target="_blank" 
                 rel="noreferrer" 

@@ -59,7 +59,7 @@
 }
 
 .Body {
-  background-color: #3f8599;
+  background-color: #2f6574;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -125,22 +125,24 @@
 }
 
 .One-line{
+  flex-direction: row-reverse;
+  display: flex;
   overflow: hidden;
   white-space: nowrap;
+  clear: both;
+  align-items: center;
 }
 
 h2{
   padding: 3px 0px 0px 0px;
   margin: 0px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-h4{
-  padding: 0px;
-  margin: 0px;
-}
-
-h5{
-  padding: 0px;
+h4, h5{
+  padding: 0px 10px 0px 0px;
   margin: 0px;
 }
 
@@ -161,23 +163,12 @@ td{
   overflow: hidden;
   width: 5px;
   border-collapse: collapse;
-  border: 1px solid black;
+  border: 1px solid white;
   padding-right: 5px;
   padding-left: 2px;
   text-align: center;
+  background-color: #05336b;
 }
-
-th{
-  overflow: hidden;
-  width: 5px;
-  border-collapse: collapse;
-  border-bottom: 2px solid black;
-  padding-right: 5px;
-  padding-left: 2px;
-}
-
-td:nth-child(even) {background-color: #282c34;}
-td:nth-child(odd) {background-color: #05336b;}
 
 ::-webkit-scrollbar{
   width: 10px;
