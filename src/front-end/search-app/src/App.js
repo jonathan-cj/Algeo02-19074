@@ -98,13 +98,15 @@ class App extends Component  {
     const type = ["text/html","text/plain","application/pdf"] 
     
     //Upload file 1 per 1
-    for(let i=0; i<selectedFiles.length; i++){
-      if(type.includes(selectedFiles[i].type)){
-        this.upload(selectedFiles[i])
-        uploadedFiles.push(selectedFiles[i])
-      }else{//Tipe file tidak sesuai
-        var warning = {name:`Upload ${selectedFiles[i].name} Failed`}
-        uploadedFiles.push(warning)
+    if (selectedFiles){
+      for(let i=0; i<selectedFiles.length; i++){
+        if(type.includes(selectedFiles[i].type)){
+          this.upload(selectedFiles[i])
+          uploadedFiles.push(selectedFiles[i])
+        }else{//Tipe file tidak sesuai
+          var warning = {name:`Upload ${selectedFiles[i].name} Failed`}
+          uploadedFiles.push(warning)
+        }
       }
     }
 
