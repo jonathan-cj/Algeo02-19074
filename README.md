@@ -5,10 +5,11 @@
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Prerequisites](#prerequisites)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
+* [References](#References)
 
 ## General info
 Temu-balik informasi(_information retrieval_) merupakan proses menemukan kembali (_retrieval_) informasi yang relevan terhadap kebutuhan pengguna dari suatu kumpulan informasi secara otomatis. Biasanya, sistem temu balik informasi ini digunakan untuk mencari informasi pada iformasi yang tidak terstruktur, seperti laman web atau dokumen. _Search-engine_ ini merupakan sebuah aplikasi _dot product_ pada sistem temu-balik informasi yang menggunakan model ruang vektor dan memanfaatkan _cosine similarity_.
@@ -23,26 +24,39 @@ Result of a Query
 
 ![result](https://user-images.githubusercontent.com/63598464/98943559-46b03180-2522-11eb-9502-fbbad5d4bf36.jpg)
 
+## Prerequisites
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/)
+* [NodeJS](https://nodejs.org/en/)
+* [Yarn](https://yarnpkg.com/)
+
 ## Setup
 1. Clone Repo
 ```javascript
 git clone https://github.com/jonathan-cj/Algeo02-19074
 ```
-2. Start Back-End dan Front-End
+2. Start Front-End
 ```javascript
-cd Algeo02-19074
-cd src
+cd Algeo02-19074/src
 ```
 ```javascript
 cd front-end/search-app
 yarn start
 ```
+Jika menemukan error berikut ketika melakukan yarn start, 
+![image](https://user-images.githubusercontent.com/63598464/99066266-4031c080-25db-11eb-86ed-973e7f0f5ae9.png)
+
+Jalankan perintah berikut sebelum melakukan yarn start kembali
+```javascript
+npm update
+```
+
+3. Start Back-End
 ```javascript
 cd ../..
 cd back-end
 flask run
 ```
-3. Buka Localhost
+4. Buka Localhost
 ```javascript
 http://localhost:3000/
 ```
@@ -67,5 +81,6 @@ List of features
 ## Status
 Project is: _in progress_
 
-## Inspiration
-[Tugas Besar 2 Aljabar dan Geometri](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Tubes2-Algeo-2020.pdf)
+## References
+1. [Tugas Besar 2 Aljabar dan Geometri](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Tubes2-Algeo-2020.pdf)
+2. [Aplikasi Dot-Product pada Sistem Temu Balik Informasi](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-12-Aplikasi-dot-product-pada-IR.pdf)
