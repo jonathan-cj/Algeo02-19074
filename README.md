@@ -5,6 +5,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Prerequisites](#prerequisites)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
@@ -22,6 +23,11 @@ Landing Page
 Result of a Query
 
 ![result](https://user-images.githubusercontent.com/63598464/98943559-46b03180-2522-11eb-9502-fbbad5d4bf36.jpg)
+
+## Prerequisites
+* [Flask] (https://flask.palletsprojects.com/en/1.1.x/installation/)
+* [NodeJS] (https://nodejs.org/en/)
+* [Yarn] (https://yarnpkg.com/)
 
 ## Setup
 1. Clone Repo
