@@ -1,6 +1,6 @@
 import imghdr
 import os
-from flask import Flask, render_template, request, send_from_directory,jsonify
+from flask import Flask, render_template, request, send_from_directory, jsonify, redirect
 from werkzeug.utils import secure_filename
 from csim import *
 
@@ -31,11 +31,13 @@ def upload_files():
 
 @app.route('/database/<filename>',methods=['GET']) # return file
 def view_file(filename):
-    return send_from_directory(app.config['Path'], filename)
+    if isfilenotempty(app.config['Path'],filename):
+        return send_from_directory(app.config['Path'], filename)
+    return redirect('/error/emptyfile')
 
-# @app.route('/search')
-# def searcht():
-#     return render_template('search.html')
+@app.route('/error/emptyfile',methods=['GET'])
+def errorq():
+    return 'ERROR : FILE IS EMPTY'
 
 @app.route('/search/',methods=['POST','GET'])
 def search():
