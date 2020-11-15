@@ -77,7 +77,7 @@ dalam web browser.
 Tampilan layout dari aplikasi web yang akan dibangun adalah sebagai berikut.
 ![landingPage](https://user-images.githubusercontent.com/63598464/99136022-79a71200-2655-11eb-906a-bf12f7dde580.jpg)
 
-Berikut merupakan contoh penggunaan dari _search-engine_,
+Berikut merupakan contoh penggunaan dari _search-engine_, sebelum _upload_ dokumen pastikan folder test kosong,
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/63598464/99137509-d73f5c80-265d-11eb-87b7-e25667aba5a9.gif)
 
