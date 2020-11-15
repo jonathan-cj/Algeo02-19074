@@ -50,7 +50,7 @@ def wordcount(x): # Count occurence of words
     return wcount
 
 def totalword(x): # Sum of all words
-    # x         : array of tuple
+    # x         : array of tuple (A,B), A is word, B is occurence of the word
     # output    : integer
     doc = wordcount(list(clear(x).split()))
     sum = 0
