@@ -23,14 +23,14 @@ from os import listdir
 from os import path
 
 def clear(x): # Clear strings from symbols
-    # x         : string (filled with symbols)
+    # x         : strings (filled with symbols)
     # output    : srings (no symbols)
     if x != None:
         return x.lower().replace('–',' ').replace('-',' ').replace('(','').replace(')',' ').replace(',','').replace('.','').replace('!','').replace('?','').replace('"',' ')
     return None
 
 def tokenit(x): # Tokenizing document
-    # x         : string
+    # x         : strings
     # output    : array of strings
     ban = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 
     'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 
@@ -50,7 +50,7 @@ def wordcount(x): # Count occurence of words
     return wcount
 
 def totalword(x): # Sum of all words
-    # x         : array of dict
+    # x         : array of tuple
     # output    : integer
     doc = wordcount(list(clear(x).split()))
     sum = 0
