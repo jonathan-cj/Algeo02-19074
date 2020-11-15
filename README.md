@@ -10,6 +10,7 @@
 * [Features](#features)
 * [Status](#status)
 * [References](#References)
+* [About Us](#about-us)
 
 ## General info
 Temu-balik informasi(_information retrieval_) merupakan proses menemukan kembali (_retrieval_) informasi yang relevan terhadap kebutuhan pengguna dari suatu kumpulan informasi secara otomatis. Biasanya, sistem temu balik informasi ini digunakan untuk mencari informasi pada iformasi yang tidak terstruktur, seperti laman web atau dokumen. _Search-engine_ ini merupakan sebuah aplikasi _dot product_ pada sistem temu-balik informasi yang menggunakan model ruang vektor dan memanfaatkan _cosine similarity_.
@@ -91,3 +92,9 @@ Project is: _in progress_
 ## References
 1. [Tugas Besar 2 Aljabar dan Geometri](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Tubes2-Algeo-2020.pdf)
 2. [Aplikasi Dot-Product pada Sistem Temu Balik Informasi](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-12-Aplikasi-dot-product-pada-IR.pdf)
+
+## About Us
+Mahasiswa Teknik Informatika Peserta Kuliah IF2123 Tahun Ajaran 2020/2021
+1. Christopher Chandrasaputra - 13519074
+2. Isabella Handayani Sumantri - 13519081
+3. Jonathan Christhoper Jahja - 13519144
