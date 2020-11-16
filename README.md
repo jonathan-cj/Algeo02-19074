@@ -87,7 +87,7 @@ List of features
 * Tabel _Term_ dan Banyak Kemunculan _Term_
 
 ## Status
-Project is: _in progress_
+Project is: _finished_
 
 ## References
 1. [Tugas Besar 2 Aljabar dan Geometri](https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Tubes2-Algeo-2020.pdf)
